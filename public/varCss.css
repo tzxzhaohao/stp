@@ -1,0 +1,191 @@
+/* @font-face {
+    font-family: 'MiSans';
+    src: url('./font-gather/MiSans-Medium.woff2?t=20230718') format('woff2'),
+        url('./font-gather/MiSans-Medium.woff') format('woff'),
+        url('./font-gather/MiSans-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Oswald';
+    src: url('./font-gather/oswald.ttf') format('OpenType');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ysbth';
+    src: url('./font-gather/ysbth.woff2?t=20230718') format('woff2'),
+        url('./font-gather/ysbth.woff') format('woff'),
+        url('./font-gather/ysbth.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+} */
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('./font-gather/Oswald.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PangMenZhengDaoBiao';
+    src: url('./font-gather/PangMenZhengDaoBiao.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+:root {
+    /*------------字体------------*/
+    --font-family-text: 'Microsoft YaHei';
+    --font-family-title: 'Microsoft YaHei';
+    --font-family-number: 'Oswald';
+    --font-family-main-title: 'PangMenZhengDaoBiao';
+}
+
+/*---------text---------*/
+/* 使用说明:设计稿标注如：
+ --dv-text-body1
+
+ font-family: MiSans;
+ font-size: 14px;
+ font-weight: normal;
+ line-height: 14px;
+ letter-spacing: 0em;
+
+ 代码使用：
+ font: var(--dv-text-body1);
+ 如果需要设置另外的line-height可以单独写入line-height覆盖
+ line-height: 24px;
+ */
+/*---------text-END---------*/
+
+:root {
+    --fs-e-1: 14px;
+    --fs-e-2: 12px;
+    --fs-e-3: 16px;
+
+    --dv-text-body1: normal 14px/14px var(--font-family-text);
+    --dv-text-body2: normal 12px/12px var(--font-family-text);
+    --dv-text-body3: normal 16px/16px var(--font-family-text);
+
+    --dv-text-headline1: 500 16px/16px var(--font-family-title);
+    --dv-text-headline2: 500 14px/14px var(--font-family-title);
+    --dv-text-headline3: 500 12px/12px var(--font-family-title);
+
+    --dv-paragraph-text-12: normal 12px/20px var(--font-family-text);
+    --dv-paragraph-text-14: normal 14px/22px var(--font-family-text);
+    --dv-paragraph-text-16: normal 16px/24px var(--font-family-text);
+    --dv-paragraph-text-20: normal 20px/26px var(--font-family-text);
+
+    --dv-text-number1 : normal 14px/14px var(--font-family-number);
+    --dv-text-number2 : normal 12px/12px var(--font-family-number);
+    --dv-text-number3 : normal 16px/16px var(--font-family-number);
+    --dv-text-number4 : normal 18px/18px var(--font-family-number);
+    --dv-text-number5 : normal 20px/20px var(--font-family-number);
+    --dv-text-number6 : normal 24px/24px var(--font-family-number);
+    --dv-text-number7 : normal 32px/32px var(--font-family-number);
+    --dv-text-number8 : normal 40px/40px var(--font-family-number);
+    --dv-text-number9 : normal 48px/48px var(--font-family-number);
+    --dv-text-number10 : normal 56px/56px var(--font-family-number);
+}
+
+
+/*---------3.0---------*/
+:root {
+    /* shadow */
+    --dv-box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.16);
+    --dv-box-shadow-dark: 0 8px 16px -8px rgba(0, 0, 0, 0.16), 0 12px 32px 0 rgba(0, 0, 0, 0.12), 0 16px 48px 16px rgba(0, 0, 0, 0.08);
+    --dv-box-shadow-light: 0 0 12px 0 rgba(0, 0, 0, 0.12);
+    --dv-box-shadow-lighter: 0 0 6px 0 rgba(0, 0, 0, 0.12);
+    /* background */
+    --dv-color-background-base: #000b1a;
+    --dv-color-background-overlay: #000b1a;
+    --dv-color-background-page: #000b1a;
+    /* border */
+    --dv-color-border-base: rgba(24, 59, 94, 1);
+    --dv-color-border-dark: rgba(10, 34, 59, 1);
+    --dv-color-border-darker: rgba(10, 34, 59, 1);
+    --dv-color-border-extra-light: rgba(46, 87, 128, 1);
+    --dv-color-border-light: #1F466C;
+    --dv-color-border-lighter: rgba(39, 81, 123, 1);
+    /* danger */
+    --dv-color-danger: #f84439;
+    --dv-color-danger-10: #190706;
+    --dv-color-danger-20: #320e0b;
+    --dv-color-danger-30: #4a1411;
+    --dv-color-danger-50: #7c221c;
+    --dv-color-danger-70: #ae3028;
+    --dv-color-danger-80: #c6362e;
+    --dv-color-danger-110: #d15e58;
+    /* fill */
+    --dv-color-fill-base: rgba(12, 43, 75, 1);
+    --dv-color-fill-blank: rgba(7, 29, 51, 1);
+    --dv-color-fill-dark: rgba(3, 23, 41, 1);
+    --dv-color-fill-darker: rgba(3, 23, 41, 1);
+    --dv-color-fill-extra-light: rgba(68, 136, 208, 0.25);
+    --dv-color-fill-light: rgba(12, 43, 75, 1);
+    --dv-color-fill-lighter: rgba(68, 136, 208, 0.2);
+    /* index */
+    --dv-color-index: #00deff;
+    --dv-color-index-10: #001619;
+    --dv-color-index-20: #002c33;
+    --dv-color-index-30: #00434d;
+    --dv-color-index-50: #006f7f;
+    --dv-color-index-70: #009cb3;
+    --dv-color-index-80: #00b2cc;
+    --dv-color-index-110: #33e5ff;
+    /* info */
+    --dv-color-info-10: #000b1a;
+    --dv-color-info-100: #0054cc;
+    --dv-color-info-20: #001533;
+    --dv-color-info-30: #001f4c;
+    --dv-color-info-50: #003580;
+    --dv-color-info-70: #0049b2;
+    --dv-color-info-110: #73767a;
+    /* primary */
+    --dv-color-primary: #00C8FF;
+    --dv-color-primary-10: #001E27;
+    --dv-color-primary-20: #002E3A;
+    --dv-color-primary-30: #004B60;
+    --dv-color-primary-50: #006A87;
+    --dv-color-primary-70: #0081A4;
+    --dv-color-primary-80: #0054cc;
+    --dv-color-primary-110: #1ECFFF;
+    /* success */
+    --dv-color-success: #15f3a3;
+    --dv-color-success-10: #021a11;
+    --dv-color-success-20: #043322;
+    --dv-color-success-30: #064c33;
+    --dv-color-success-50: #0b8056;
+    --dv-color-success-70: #0fb277;
+    --dv-color-success-80: #11cc89;
+    --dv-color-success-110: #56e7b3;
+    /* text */
+    --dv-color-text-disable: rgba(153, 160, 166, 1);
+    --dv-color-text-placeholder: rgba(117, 129, 140, 1);
+    --dv-color-text-primary: #fff;
+    --dv-color-text-regular: #fff;
+    --dv-color-text-secondary: rgba(198, 203, 208, 1);
+    /* warning */
+    --dv-color-warning: #fdbd00;
+    --dv-color-warning-10: #1a1300;
+    --dv-color-warning-20: #332600;
+    --dv-color-warning-30: #4b3800;
+    --dv-color-warning-50: #7f5f00;
+    --dv-color-warning-70: #b18400;
+    --dv-color-warning-80: #ca9700;
+    --dv-color-warning-110: #ebbf3d;
+    /* text-shadow */
+    --dv-text-shadow: rgba(0, 0, 0, 0.5);
+
+    --dv-border-radius: 4px;
+
+}
+
+
+body {
+    /* min-width: 1920px !important; */
+    /* min-height: 912px !important; */
+    position: relative;
+    /* background-color: #fff; */
+}

@@ -1,0 +1,144 @@
+@import './normalize.scss';
+@import './reset.scss';
+
+/****************************
+*        整体模块布局            *
+* **************************/
+.left-module {
+  position: absolute;
+  top: 60px;
+  left: 16px;
+  z-index: 11;
+  width: 320px;
+}
+
+.right-module {
+  position: absolute;
+  top: 60px;
+  right: 16px;
+  z-index: 11;
+  width: 320px;
+}
+
+.follow-right-module {
+  position: absolute;
+  top: 104px;
+  right: 248px;
+  z-index: 11;
+}
+
+.analysis-tool {
+  top: 104px;
+}
+
+.mgb8 {
+  margin-bottom: 8px;
+}
+
+.mgt8 {
+  margin-top: 8px;
+}
+
+.mgt12 {
+  margin-top: 12px;
+}
+
+.mgt16 {
+  margin-top: 16px;
+}
+
+.mgt24 {
+  margin-top: 24px;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+
+// 重置时间选择
+.el-date-editor {
+  &.h28 {
+    height: 28px;
+    line-height: 28px;
+
+    .el-input__inner {
+      height: 26px;
+      line-height: 26px;
+    }
+  }
+
+  &.w120 {
+    width: 120px;
+  }
+
+  &.w220 {
+    width: 220px;
+  }
+
+  &.w240 {
+    width: 240px;
+  }
+
+  &.w280 {
+    width: 280px;
+  }
+}
+
+// 重置input
+.el-input {
+  &.h28 {
+    .el-input__inner {
+      height: 26px;
+      line-height: 26px;
+    }
+  }
+
+  &.w160 {
+    width: 160px;
+  }
+
+  &.w184 {
+    width: 184px;
+  }
+
+  &.w200 {
+    width: 200px;
+  }
+
+  &.w240 {
+    width: 240px;
+  }
+}
+
+// 重置select
+.el-select {
+  &.h28 {
+    .el-input__inner {
+      height: 26px;
+      line-height: 26px;
+    }
+  }
+
+  &.w100 {
+    width: 100px;
+  }
+
+  &.w104 {
+    width: 104px;
+  }
+
+  &.w120 {
+    width: 120px;
+  }
+}
+
+.sence-modal-table {
+  .el-table th.el-table__cell {
+    background-color: var(--dv-color-fill-light);
+  }
+
+  .el-table .el-table__cell {
+    font: var(--dv-text-body2);
+  }
+}

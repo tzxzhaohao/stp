@@ -1,0 +1,85 @@
+:root body {
+    /* primary */
+    --el-color-primary: var(--dv-color-primary);
+    --el-color-primary-light-3: var(--dv-color-primary-70);
+    --el-color-primary-light-5: var(--dv-color-primary-50);
+    --el-color-primary-light-7: var(--dv-color-primary-30);
+    --el-color-primary-light-8: var(--dv-color-primary-20);
+    --el-color-primary-light-9: var(--dv-color-primary-10);
+    --el-color-primary-dark-2: var(--dv-color-primary-110);
+
+    /* success */
+    --el-color-success: var(--dv-color-success);
+    --el-color-success-light-3: var(--dv-color-success-70);
+    --el-color-success-light-5: var(--dv-color-success-50);
+    --el-color-success-light-7: var(--dv-color-success-30);
+    --el-color-success-light-8: var(--dv-color-success-20);
+    --el-color-success-light-9: var(--dv-color-success-10);
+    --el-color-success-dark-2: var(--dv-color-success-110);
+
+    /* warning */
+    --el-color-warning: var(--dv-color-warning);
+    --el-color-warning-light-3: var(--dv-color-warning-70);
+    --el-color-warning-light-5: var(--dv-color-warning-50);
+    --el-color-warning-light-7: var(--dv-color-warning-30);
+    --el-color-warning-light-8: var(--dv-color-warning-20);
+    --el-color-warning-light-9: var(--dv-color-warning-10);
+    --el-color-warning-dark-2: var(--dv-color-warning-110);
+
+    /* danger */
+    --el-color-danger: var(--dv-color-danger);
+    --el-color-danger-light-3: var(--dv-color-danger-70);
+    --el-color-danger-light-5: var(--dv-color-danger-50);
+    --el-color-danger-light-7: var(--dv-color-danger-30);
+    --el-color-danger-light-8: var(--dv-color-danger-20);
+    --el-color-danger-light-9: var(--dv-color-danger-10);
+    --el-color-danger-dark-2: var(--dv-color-danger-110);
+
+    /* info */
+    --el-color-info: var(--dv-color-info-100);
+    --el-color-info-light-3: var(--dv-color-info-70);
+    --el-color-info-light-5: var(--dv-color-info-50);
+    --el-color-info-light-7: var(--dv-color-info-30);
+    --el-color-info-light-8: var(--dv-color-info-20);
+    --el-color-info-light-9: var(--dv-color-info-10);
+    --el-color-info-dark-2: var(--dv-color-info-110);
+
+    /* bg */
+    --el-bg-color-page: var(--dv-color-background-page);
+    --el-bg-color: var(--dv-color-background-base);
+    --el-bg-color-overlay: var(--dv-color-background-overlay);
+
+    /* text */
+    --el-text-color-primary: var(--dv-color-text-primary);
+    --el-text-color-regular: var(--dv-color-text-regular);
+    --el-text-color-secondary: var(--dv-color-text-secondary);
+    --el-text-color-placeholder: var(--dv-color-text-placeholder);
+    --el-text-color-disabled: var(--dv-color-text-disable);
+
+    /* border */
+    --el-border-color-darker: var(--dv-color-border-darker);
+    --el-border-color-dark: var(--dv-color-border-dark);
+    --el-border-color: var(--dv-color-border-base);
+    --el-border-color-light: var(--dv-color-border-light);
+    --el-border-color-lighter: var(--dv-color-border-lighter);
+    --el-border-color-extra-light: var(--dv-color-border-extra-light);
+
+    /* fill */
+    --el-fill-color-darker: var(--dv-color-fill-darker);
+    --el-fill-color-dark: var(--dv-color-fill-dark);
+    --el-fill-color: var(--dv-color-fill-base);
+    --el-fill-color-light: var(--dv-color-fill-light);
+    --el-fill-color-lighter: var(--dv-color-fill-lighter);
+    --el-fill-color-extra-light: var(--dv-color-fill-extra-light);
+    --el-fill-color-blank: var(--dv-color-fill-blank);
+
+    /* disabled */
+    --el-disabled-bg-color: var(--dv-color-fill-light);
+    --el-disabled-text-color: var(--dv-text-color-placeholder);
+    --el-disabled-border-color: var(--dv-color-border-lighter);
+
+    /*
+    修复特别的错误
+    */
+    --el-menu-text-color: var(--el-text-color-primary);
+}

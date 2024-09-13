@@ -1,0 +1,178 @@
+@charset "UTF-8";
+.left-module {
+  position: absolute;
+  left: 16px;
+  z-index: 11;
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+  background-color: transparent;
+}
+
+.right-module {
+  position: absolute;
+  right: 16px;
+  z-index: 11;
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+  background-color: transparent;
+}
+
+.follow-right-module {
+  position: absolute;
+  right: 352px;
+}
+
+.analysis-tool {
+  left: 352px;
+  transition: left 0.3s ease;
+}
+.analysis-tool.isEventMode {
+  left: 260px;
+}
+
+.common-analysis-tool-popup {
+  position: absolute;
+  left: 404px;
+  transition: left 0.3s ease;
+  transform: translateX(0);
+}
+.common-analysis-tool-popup.isEventMode {
+  left: 312px;
+}
+
+.response-tool {
+  transition: right 0.3s ease;
+  right: 352px;
+}
+
+.common-response-tool-popup {
+  transition: right 0.3s ease;
+  transform: translateX(0);
+  right: 400px;
+}
+
+._top-small-screen .left-module,
+._top-small-screen .right-module,
+._top-small-screen .follow-right-module,
+._top-small-screen .analysis-tool,
+._top-small-screen .spaceTimeAnalysisPopup {
+  top: 90px !important;
+}
+._top-small-screen .common-top {
+  top: 90px !important;
+}
+._top-small-screen .response-tool-top {
+  top: 90px;
+}
+
+._top-big-screen .left-module,
+._top-big-screen .right-module,
+._top-big-screen .follow-right-module,
+._top-big-screen .spaceTimeAnalysisPopup {
+  top: 90px !important;
+}
+._top-big-screen .common-top {
+  top: 90px !important;
+}
+._top-big-screen .response-tool-top {
+  top: 90px;
+}
+
+._hidePanel .left-module {
+  transform: translateX(-100%) !important;
+  left: 0 !important;
+}
+._hidePanel .right-module {
+  transform: translateX(100%) !important;
+  right: 0 !important;
+}
+._hidePanel .analysis-tool {
+  left: 16px !important;
+}
+._hidePanel .common-analysis-tool-popup {
+  left: 68px;
+}
+._hidePanel .response-tool {
+  right: 16px;
+}
+._hidePanel .common-response-tool-popup {
+  right: 64px !important;
+}
+._hidePanel .layout-tools {
+  right: 64px !important;
+}
+._hidePanel.custom-layout .common-map-tool-popup {
+  right: 116px !important;
+}
+
+/*自定义布局隐藏部分模块*/
+.custom-layout .analysis-tool {
+  display: inline;
+}
+.custom-layout .watermark-box,
+.custom-layout .map-tool,
+.custom-layout .type-select,
+.custom-layout .right-box,
+.custom-layout .eventList {
+  display: block;
+}
+.custom-layout .layout-footer {
+  font-size: 12px;
+  padding: 0 16px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  background: #07223B;
+  box-sizing: border-box;
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-image: linear-gradient(270deg, rgba(0, 128, 179, 0.2) 0%, rgba(0, 164, 229, 0.5039) 49%, rgba(0, 128, 179, 0.2) 100%) 1 0 0 0;
+}
+.custom-layout .map-tool {
+  position: absolute;
+  bottom: 44px;
+  right: 352px;
+}
+.custom-layout .page_Air .map-tool {
+  bottom: 120px;
+  right: 16px;
+}
+.custom-layout .page_Air .siteControlPanel {
+  bottom: 56px !important;
+  right: 16px !important;
+}
+.custom-layout .page_Air .common-map-tool-popup {
+  right: 64px !important;
+  bottom: 120px !important;
+}
+.custom-layout .right-box,
+.custom-layout .watermark-box {
+  display: block;
+}
+.custom-layout .type-select {
+  display: flex;
+}
+.custom-layout .watermark-box {
+  position: absolute;
+  bottom: 40px;
+  left: 352px;
+}
+.custom-layout .right-box {
+  position: absolute;
+}
+.custom-layout .common-map-tool-popup {
+  right: 400px !important;
+  bottom: 40px !important;
+}
+.custom-layout .response-module .event-process {
+  top: 20px !important;
+}
+.custom-layout .response-module .go-back {
+  left: 400px !important;
+}
+.custom-layout .emergency_answer .LayoutHeader .menus {
+  display: none !important;
+}

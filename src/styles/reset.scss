@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+html,
+body {
+  font-family: var(--font-family-text), 'Microsoft YaHei', 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', SimSun, sans-serif;
+  font-size: 14px;
+  height: 100%;
+  box-sizing: border-box;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+ol,
+ul,
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+:root {
+  /* fontSize */
+  ----dv-text-headline1: 16px;
+  ----dv-text-headline2: 14px;
+  ----dv-text-headline3: 12px;
+  ----dv-text-body1: 14px;
+  ----dv-text-body2: 12px;
+  ----dv-text-body3: 16px;
+  ----dv-text-number1: 14px;
+  ----dv-text-number2: 12px;
+  ----dv-text-number3: 16px;
+  ----dv-text-number4: 18px;
+  ----dv-text-number5: 20px;
+  ----dv-text-number6: 24px;
+  ----dv-text-number7: 32px;
+  ----dv-text-number8: 40px;
+  ----dv-text-number9: 48px;
+  ----dv-text-number10: 56px;
+
+  /* font-family */
+  --dv-font-family-number: Oswald;
+}
+/*项目初始基础样式*/
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}

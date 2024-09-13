@@ -1,0 +1,223 @@
+$--vertical-padding-left: 16px; //面板两侧的空隙宽度-left
+
+$--vertical-padding-right: 16px; //面板两侧的空隙宽度-right
+
+$--base-screen-top: 90px; //工具栏等侧边栏距离顶部基础高度
+
+$--big-screen-offset-y: 0px; //适配大屏幕--工具栏等侧边栏距离顶部基础高度下降的高度；
+
+$--base-analysis-tool-left: 352px; //左侧分析工具栏left坐标
+
+$--base-analysis-tool-offset-x: 52px; //左侧分析工具栏弹窗偏移量
+
+$--base-follow-right: 352px; //右侧工具栏right坐标
+
+$--base-follow-right-offset-x: 52px; //右侧工具栏弹窗偏移量
+
+$--base-response-tool-right: 352px; //应急响应工具栏right坐标
+
+$--base-response-tool-offset-y: 0px; // 应急响应工具栏距离顶部基础高度下降的高度
+
+$--base-response-tool-offset-x: 48px; // 应急响应工具栏弹窗偏移量
+
+.left-module {
+    position: absolute;
+    left: $--vertical-padding-left;
+    z-index: 11;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    background-color: transparent;
+}
+
+.right-module {
+    position: absolute;
+    right: $--vertical-padding-right;
+    z-index: 11;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    background-color: transparent;
+}
+.follow-right-module {
+    position: absolute;
+    right: $--base-follow-right;
+}
+.analysis-tool {
+    left: $--base-analysis-tool-left;
+    transition: left 0.3s ease;
+    &.isEventMode {
+        left: $--base-analysis-tool-left + 170 - 262;
+    }
+}
+.common-analysis-tool-popup {
+    position: absolute;
+    left: $--base-analysis-tool-left + $--base-analysis-tool-offset-x;
+    transition: left 0.3s ease;
+    transform: translateX(0);
+    &.isEventMode {
+        left: $--base-analysis-tool-left + $--base-analysis-tool-offset-x + 170 - 262;
+    }
+}
+.response-tool {
+    transition: right 0.3s ease;
+    right: $--base-response-tool-right;
+}
+.common-response-tool-popup {
+    transition: right 0.3s ease;
+    transform: translateX(0);
+    right: $--base-response-tool-right + $--base-response-tool-offset-x;
+}
+._top-small-screen {
+    .left-module,
+    .right-module,
+    .follow-right-module,
+    .analysis-tool,
+    .spaceTimeAnalysisPopup {
+        top: $--base-screen-top !important;
+    }
+    .common-top {
+        top: $--base-screen-top !important;
+    }
+    .response-tool-top {
+        top: $--base-screen-top + $--base-response-tool-offset-y;
+    }
+}
+._top-big-screen {
+    .left-module,
+    .right-module,
+    .follow-right-module,
+    .spaceTimeAnalysisPopup {
+        top: $--base-screen-top + $--big-screen-offset-y !important ;
+    }
+    .common-top {
+        top: $--base-screen-top + $--big-screen-offset-y !important ;
+    }
+    .response-tool-top {
+        top: $--base-screen-top + $--big-screen-offset-y + $--base-response-tool-offset-y;
+    }
+}
+._hidePanel {
+    .left-module {
+        transform: translateX(-100%) !important;
+        left: 0 !important;
+    }
+    .right-module {
+        transform: translateX(100%) !important;
+        right: 0 !important;
+    }
+    .analysis-tool {
+        left: $--vertical-padding-left !important;
+    }
+    .common-analysis-tool-popup {
+        left: $--vertical-padding-left + $--base-analysis-tool-offset-x;
+    }
+    .response-tool {
+        right: $--vertical-padding-right;
+    }
+    .common-response-tool-popup {
+        right: $--vertical-padding-right + $--base-response-tool-offset-x !important;
+    }
+    .layout-tools {
+        right: 64px !important;
+    }
+    &.custom-layout {
+        .common-map-tool-popup {
+            right: 116px !important;
+        }
+    }
+}
+/*自定义布局隐藏部分模块*/
+.custom-layout {
+
+    //隐藏左侧分析模块入口
+    .analysis-tool {
+        //display: none;
+        display: inline;
+    }
+    //.search.common-analysis-tool-popup {
+    //    top: auto!important;
+    //    bottom: 72px!important;
+    //    left: auto!important;
+    //    right: 428px!important;
+    //}
+    //隐藏地图工具栏、事件列表
+    .watermark-box,
+    .map-tool,
+    .type-select,
+    .right-box,
+    .eventList {
+        //display: none;
+        display: block;
+    }
+    .layout-footer {
+        font-size: 12px;
+        padding: 0 16px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        //background-color: rgba(2, 28, 42, 0.8);
+        //backdrop-filter: blur(10px) brightness(70%);
+        background: #07223B;
+        box-sizing: border-box;
+        border-width: 1px 0 0 0;
+        border-style: solid;
+        border-image: linear-gradient(270deg, rgba(0, 128, 179, 0.2) 0%, rgba(0, 164, 229, 0.5039) 49%, rgba(0, 128, 179, 0.2) 100%) 1 0 0 0;
+    }
+    .map-tool {
+        position: absolute;
+        bottom: 44px;
+        right: $--base-response-tool-right;
+    }
+    .page_Air{
+        .map-tool {
+            bottom: 120px;
+            right: $--vertical-padding-right;
+        }
+        .siteControlPanel {
+            bottom: 56px !important;
+            right: $--vertical-padding-right !important;
+        }
+        .common-map-tool-popup {
+            right: $--vertical-padding-right + $--base-response-tool-offset-x !important;
+            bottom: 120px !important;
+        }
+    }
+
+
+    //页面展示底部水印等
+    .right-box,
+    .watermark-box {
+        display: block;
+    }
+    .type-select {
+        display: flex;
+    }
+    .watermark-box {
+        position: absolute;
+        bottom: 40px;
+        left: $--base-analysis-tool-left;
+    }
+
+    .right-box {
+        position: absolute;
+        //right: 444px !important;
+        //bottom: 40px;
+    }
+    .common-map-tool-popup {
+        right: $--base-response-tool-right + $--base-response-tool-offset-x !important;
+        bottom: 40px !important;
+    }
+
+    //应急响应模块
+    .response-module .event-process {
+        top: 20px !important;
+    }
+    .response-module .go-back {
+        left: 400px !important;
+    }
+    .emergency_answer .LayoutHeader .menus {
+        display: none !important;
+    }
+}
