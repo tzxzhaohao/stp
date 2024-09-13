@@ -1,11 +1,11 @@
 <template lang="pug">
 ElConfigProvider(:locale="zhCn")
   router-view
-  sencePanel
+  //- sencePanel
 </template>
 <script setup lang="ts">
 import { useAppStore } from '@/stores/app'
-import sencePanel from '@/components/sencePanel/index.vue'
+// import sencePanel from '@/components/sencePanel/index.vue'
 import { ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 

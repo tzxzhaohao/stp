@@ -103,7 +103,6 @@ const onClick = () => {
 通用面板组件的样式
 */
 .base-panel-container {
-  position: relative;
   box-sizing: border-box;
   width: 320px;
   backdrop-filter: blur(10px) brightness(70%);
@@ -166,8 +165,8 @@ const onClick = () => {
 }
 
 .base-panel-content {
-  padding: 12px;
-  border: 1px solid transparent;
+  /*  padding: 12px;
+  border: 1px solid transparent; */
 }
 
 .base-panel-checked {

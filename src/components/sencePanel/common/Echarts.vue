@@ -2,7 +2,6 @@
 <template lang="pug">
 .chart
     .echarts-box(ref="echart")
-    .chartBG
 </template>
 <script>
 export default {
@@ -75,12 +74,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.echarts-box,
 .chart {
-  width: 100%;
-  height: 100%;
   position: relative;
   z-index: 99;
+}
+.echarts-box {
+  height: 100%;
 }
 .chartBG {
   position: absolute;
