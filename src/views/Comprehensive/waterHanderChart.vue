@@ -66,6 +66,7 @@ const handerData = reactive({
   }
 }
 .total_message {
+  position: relative;
   margin-top: 20px;
   margin-left: 12px;
   margin-right: 12px;
@@ -99,7 +100,10 @@ const handerData = reactive({
     }
   }
   .total_text {
-    flex: 1;
+    position: absolute;
+    right: 0;
+    top: 13px;
+    width: 255px;
     height: 53px;
     background-image: url('@/views/Comprehensive/images/bg_water-yield.png');
     background-size: cover;

@@ -12,13 +12,26 @@ import WaterHanderChart from '@/views/Comprehensive/waterHanderChart.vue'
 import FlowRateChart from '@/views/Comprehensive/flowRateChart.vue'
 import MenuList from '@/views/Comprehensive/components/MenuList.vue'
 import WaterQuality from '@/views/Comprehensive/waterQuality.vue'
-/* import BasePanel from '@/components/BasePanel/BasePanel.vue'
-import { ref, computed } from 'vue'
-import { storeToRefs } from 'pinia'
-import { useGlobalStore } from '@/stores/global'
-import { useChangeModule, useMicroAppData, useRecordScene } from '@/hooks/mainMapTool'
-import IScrollbar from '@/components/IScrollbar.vue'
-import type { EnvMap } from './type'
-import dayjs from 'dayjs' */
+import { onMounted } from 'vue'
+const loadCesium3Dtileset = async (url: string) => {
+  const { viewer, Cesium3DTileset, Cartographic, Cartesian3, Matrix4 } = window.Cesium.viewer
+  const tileset = new Cesium3DTileset({
+    url,
+    maximumScreenSpaceError: 16,
+    backFaceCulling: true,
+  })
+  viewer.scene.primitives.add(tileset)
+  const layer = await tileset.readyPromise
+  const cartographic = Cartographic.fromCartesian(tileset.boundingSphere.center)
+  const surface = Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, 0.0)
+  const offset = Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, 17)
+  const translation = Cartesian3.subtract(offset, surface, new Cartesian3())
+  layer.modelMatrix = Matrix4.fromTranslation(translation)
+}
+onMounted(() => {
+  if (window.Cesium) {
+    loadCesium3Dtileset('http://39.105.60.121/mapdata/DtTcc/3DMD/YYY-3d/tileset.json')
+  }
+})
 </script>
 <style lang="scss"></style>
