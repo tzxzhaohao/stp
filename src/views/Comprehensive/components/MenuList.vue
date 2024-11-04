@@ -1,6 +1,6 @@
 <template>
   <ul class="menu_list">
-    <li :class="['menu_item', 'menu_item_' + index]" :key="index" v-for="(item, index) in menuList">
+    <li :class="['menu_item', 'menu_item_' + index]" :key="index" v-for="(item, index) in menuList" @click="clickStep(index)">
       <span>{{ item.title }}</span>
     </li>
   </ul>
@@ -10,18 +10,26 @@ import { ref } from 'vue'
 
 const menuList = ref([
   {
-    title: '工艺流程图一',
+    title: '主流程',
     color: 'rgba(2, 218, 230, 1)',
   },
   {
-    title: '工艺流程图二',
+    title: '污泥脱泥流程',
     color: 'rgba(76, 190, 255, 1)',
   },
   {
-    title: '工艺流程图三',
+    title: '除氟流程',
+    color: 'rgba(255, 201, 51, 1)',
+  },
+  {
+    title: '结束流程',
     color: 'rgba(255, 201, 51, 1)',
   },
 ])
+const emit = defineEmits(['clickStep'])
+const clickStep = (index: number) => {
+  emit('clickStep', index)
+}
 </script>
 <style scoped lang="scss">
 .menu_item {
@@ -35,7 +43,8 @@ const menuList = ref([
   font-weight: normal;
   cursor: pointer;
 }
-.menu_item_0 {
+.menu_item_0,
+.menu_item_3 {
   background-image: url('@/views/Comprehensive/images/btn_flow1.png');
   color: rgba(2, 218, 230, 1);
   background-size: cover;
