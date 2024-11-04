@@ -62,8 +62,8 @@ onMounted(async () => {
     treeUrl: 'http://122.191.102.250:8016/mapdata/wsclc/tree/tileset.json', // 树木模型
     plantUrl: 'http://122.191.102.250:8016/mapdata/wsclc/wsclc/tileset.json', // 污水处理厂模型
     sceneTreeUrl: 'http://122.191.102.250:8016/mapdata/wsclc/wsclc/scenetree.json', // 污水处理厂模型节点树
-    labelDataUrl: './config/scene.json', // 标注
-    viewpointDataUrl: './config/viewpoint.json', // 视角书签
+    labelDataUrl: '../src/common/scene.json', // 标注
+    viewpointDataUrl: '../src/common/viewpoint.json', // 视角书签
   })
   // 定位到指定位置
   foulWaterPlant.flyToMainOverview()
