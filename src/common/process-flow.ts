@@ -1,4 +1,9 @@
-import {
+import { flattenTileset } from '@/common/model-flatten'
+import { TilesetLayer } from '@/common/tileset-layer'
+import { ViewpointBookmark } from '@/common/viewpoint-bookmark'
+import { showSubtitle } from '@/common/typed-subtitle'
+
+const {
   Cartesian3,
   Cartographic,
   Cesium3DTileset,
@@ -7,17 +12,15 @@ import {
   Entity,
   HeadingPitchRoll,
   JulianDate,
-  Math as CesiumMath,
+  // Math as CesiumMath,
+  Math,
   Matrix4,
   Resource,
   Scene,
   Transforms,
-  Viewer,
-} from 'cesium'
-import { flattenTileset } from '@/common/model-flatten'
-import { TilesetLayer } from '@/common/tileset-layer'
-import { ViewpointBookmark } from '@/common/viewpoint-bookmark'
-import { showSubtitle } from '@/common/typed-subtitle'
+  // Viewer,
+} = window.Cesium
+const CesiumMath = Math
 
 // 地面
 const groundNodes = [
@@ -210,7 +213,7 @@ export class FoulWaterPlant {
 
   constructor(viewer: Viewer) {
     this.viewer = viewer
-    debugger
+    // debugger
     this.viewpointBookmark = new ViewpointBookmark(viewer)
     this.mainFlowNodes = [
       {
@@ -414,13 +417,13 @@ export class FoulWaterPlant {
     this.viewer.clock.currentTime = JulianDate.fromDate(d)
 
     // 加载化工园区倾斜模型图层
-    const heightOffset = 40.0 // 倾斜模型抬升高度
+    /*  const heightOffset = 40.0 // 倾斜模型抬升高度
     const parkTileset = loadTileset(this.viewer, {
       url: options.parkUrl,
       heightOffset,
       enableModelExperimental: true,
-    })
-
+    }) */
+    const parkTileset = window.tileset['倾斜摄影']
     // 倾斜模型压平
     flattenTileset(parkTileset, {
       southwest: Cartographic.fromDegrees(112.30423604132345, 31.417990474551704, 90.7865705479846),

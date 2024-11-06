@@ -1,4 +1,4 @@
-import { Cartesian4, Cartographic, Cesium3DTileset, CustomShader, Matrix4, Rectangle, UniformType } from 'cesium'
+const { Cartesian4, Cartographic, Cesium3DTileset, CustomShader, Matrix4, Rectangle, UniformType } = window.Cesium
 
 export function flattenTileset(tileset: Cesium3DTileset, options: { southwest: Cartographic; northeast: Cartographic; height: number; rotation: number }) {
   const southwest = options.southwest

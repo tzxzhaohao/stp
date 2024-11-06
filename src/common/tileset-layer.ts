@@ -1,4 +1,4 @@
-import { Cesium3DTile, Cesium3DTileColorBlendMode, Cesium3DTileContent, Cesium3DTileFeature, Cesium3DTileset, Color, defaultValue, JulianDate, Scene, Viewer } from 'cesium'
+const { Cesium3DTile, Cesium3DTileColorBlendMode, Cesium3DTileContent, Cesium3DTileFeature, Cesium3DTileset, Color, defaultValue, JulianDate, Scene, Viewer } = window.Cesium
 
 type ElementMap = {
   [key: string]: Cesium3DTileFeature[]

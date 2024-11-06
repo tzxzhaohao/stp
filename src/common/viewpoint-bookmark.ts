@@ -1,4 +1,5 @@
-import { Cartesian3, Math as CesiumMath, Viewer } from 'cesium'
+const { Cartesian3, Math } = window.Cesium
+const CesiumMath = Math
 
 export type Viewpoint = {
   name: string

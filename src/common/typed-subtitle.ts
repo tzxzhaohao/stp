@@ -1,7 +1,6 @@
-import { Viewer } from 'cesium'
 import Typed from 'typed.js'
 
-export function createSubtitleBar(viewer: Viewer) {
+export function createSubtitleBar(viewer: any) {
   const container = viewer.container
 
   const statusbarContainer = document.createElement('div')

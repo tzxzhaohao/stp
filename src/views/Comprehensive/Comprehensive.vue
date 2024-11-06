@@ -9,6 +9,7 @@
   <MenuList class="left-module" @click-step="clickStep"></MenuList>
 </template>
 <script setup lang="ts">
+import { setBasePath } from '@/utils/tools'
 import WaterHanderChart from '@/views/Comprehensive/waterHanderChart.vue'
 import FlowRateChart from '@/views/Comprehensive/flowRateChart.vue'
 import MenuList from '@/views/Comprehensive/components/MenuList.vue'
@@ -36,16 +37,14 @@ onMounted(() => {
   }
 }) */
 import { onMounted } from 'vue'
-import { Viewer } from 'cesium'
 import { FoulWaterPlant, initFoulWaterPlant } from '@/common/process-flow'
 import { createSubtitleBar } from '@/common/typed-subtitle'
 
-let viewer: Viewer
 let foulWaterPlant: FoulWaterPlant
 onMounted(async () => {
   if (!window.Cesium) return
 
-  viewer = window.Cesium.viewer
+  const viewer = window.mapViewer
   // hide cesium credit
   const credit = viewer.cesiumWidget.creditContainer as HTMLElement
   credit.style.display = 'none'
@@ -57,13 +56,13 @@ onMounted(async () => {
   createSubtitleBar(viewer)
 
   foulWaterPlant = await initFoulWaterPlant(viewer, {
-    parkUrl: 'http://122.191.102.250:8016/mapdata/3dtile/tileset.json', // 化工园区倾斜模型图层
+    // parkUrl: 'http://122.191.102.250:8016/mapdata/3dtile/tileset.json', // 化工园区倾斜模型图层
     windowUrl: 'http://122.191.102.250:8016/mapdata/wsclc/window.glb', // 窗户模型
     treeUrl: 'http://122.191.102.250:8016/mapdata/wsclc/tree/tileset.json', // 树木模型
     plantUrl: 'http://122.191.102.250:8016/mapdata/wsclc/wsclc/tileset.json', // 污水处理厂模型
     sceneTreeUrl: 'http://122.191.102.250:8016/mapdata/wsclc/wsclc/scenetree.json', // 污水处理厂模型节点树
-    labelDataUrl: '../src/common/scene.json', // 标注
-    viewpointDataUrl: '../src/common/viewpoint.json', // 视角书签
+    labelDataUrl: setBasePath('/json/scene.json'), // 标注
+    viewpointDataUrl: setBasePath('/json/viewpoint.json'), // 视角书签
   })
   // 定位到指定位置
   foulWaterPlant.flyToMainOverview()

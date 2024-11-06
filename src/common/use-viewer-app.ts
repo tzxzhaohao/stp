@@ -1,4 +1,4 @@
-import { Viewer } from 'cesium'
+const { Viewer } = window.Cesium
 export function defer<T>() {
   let resolve: any
   let reject: any
@@ -14,9 +14,9 @@ export function defer<T>() {
   }
 }
 
-let viewer: Viewer
+let viewer
 
-const readyPromise = defer<Viewer>()
+const readyPromise = defer()
 const viewerReadyPromise = readyPromise.promise
 
 function createViewer(id: string, options: any) {
