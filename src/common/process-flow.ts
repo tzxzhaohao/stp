@@ -2,7 +2,6 @@ import { flattenTileset } from '@/common/model-flatten'
 import { TilesetLayer } from '@/common/tileset-layer'
 import { ViewpointBookmark } from '@/common/viewpoint-bookmark'
 import { showSubtitle } from '@/common/typed-subtitle'
-
 const {
   Cartesian3,
   Cartographic,
@@ -18,6 +17,7 @@ const {
   Resource,
   Scene,
   Transforms,
+  CustomDataSource,
   // Viewer,
 } = window.Cesium
 const CesiumMath = Math
@@ -199,6 +199,7 @@ export class FoulWaterPlant {
   windowEntity: Entity | undefined
   treeTileset: Cesium3DTileset | undefined
   plantTileset: Cesium3DTileset | undefined
+  plantDataSource: CustomDataSource
 
   plantTilesetLayer: TilesetLayer | undefined
 
@@ -213,7 +214,10 @@ export class FoulWaterPlant {
 
   constructor(viewer: Viewer) {
     this.viewer = viewer
-    // debugger
+
+    this.plantDataSource = new CustomDataSource('_plantDataSource')
+    this.viewer.dataSources.add(this.plantDataSource)
+
     this.viewpointBookmark = new ViewpointBookmark(viewer)
     this.mainFlowNodes = [
       {
@@ -434,7 +438,7 @@ export class FoulWaterPlant {
 
     // 加载窗户模型
     const height = 34.4 // 污水处理厂模型高度
-    const windowEntity = loadModel(this.viewer, options.windowUrl, height)
+    const windowEntity = loadModel(this.plantDataSource, options.windowUrl, height)
 
     // 加载树木模型
     const treeTileset = loadTileset(this.viewer, {
@@ -452,7 +456,7 @@ export class FoulWaterPlant {
     this.plantTilesetLayer = new TilesetLayer(this.viewer, plantTileset)
 
     // 加载标注
-    loadLabels(this.viewer, options.labelDataUrl)
+    loadLabels(this.plantDataSource, options.labelDataUrl)
 
     this.parkTileset = parkTileset
     this.windowEntity = windowEntity
@@ -477,6 +481,26 @@ export class FoulWaterPlant {
     // 加载视角书签
     const viewpointData = await Resource.fetchJson({ url: options.viewpointDataUrl })
     this.viewpointBookmark.fromJSON(viewpointData)
+  }
+
+  unloadModels() {
+    if (this.parkTileset) {
+      this.parkTileset.customShader = undefined
+      this.parkTileset = undefined
+    }
+
+    if (this.treeTileset) {
+      this.viewer.scene.primitives.remove(this.treeTileset)
+      this.treeTileset = undefined
+    }
+
+    if (this.plantTileset) {
+      this.viewer.scene.primitives.remove(this.plantTileset)
+      this.plantTileset = undefined
+    }
+
+    this.plantDataSource.entities.removeAll()
+    this.windowEntity = undefined
   }
 
   // 污水处理厂全景
@@ -708,9 +732,10 @@ function loadTileset(viewer: Viewer, options: { url: string; heightOffset: numbe
   const tileset = new Cesium3DTileset({
     url: options.url,
     backFaceCulling: options.backFaceCulling,
+    enableModelExperimental: options.enableModelExperimental,
   })
   tileset.readyPromise
-    .then(function (tileset: any) {
+    .then(function (tileset) {
       viewer.scene.primitives.add(tileset)
 
       // adjust tileset's height
@@ -720,22 +745,22 @@ function loadTileset(viewer: Viewer, options: { url: string; heightOffset: numbe
       const translation = Cartesian3.subtract(offset, surface, new Cartesian3())
       tileset.modelMatrix = Matrix4.fromTranslation(translation)
     })
-    .catch((e: any) => {
-      console.log(e)
+    .catch(function (error) {
+      console.log(error)
     })
 
   return tileset
 }
 
-function loadModel(viewer: Viewer, url: string, height: number) {
-  const position = Cartesian3.fromDegrees(112.261983, 31.3453507487339, height)
+function loadModel(plantDataSource: CustomDataSource, url: string, height: number) {
+  const position = Cartesian3.fromDegrees(112.26198376628, 31.34535074873, height)
   const heading = CesiumMath.toRadians(90)
   const pitch = CesiumMath.toRadians(0)
   const roll = CesiumMath.toRadians(0)
   const hpr = new HeadingPitchRoll(heading, pitch, roll)
   const orientation = Transforms.headingPitchRollQuaternion(position, hpr)
 
-  return viewer.entities.add({
+  return plantDataSource.entities.add({
     id: 'wsclc-model',
     position: position,
     orientation: orientation as any,
@@ -745,7 +770,7 @@ function loadModel(viewer: Viewer, url: string, height: number) {
   })
 }
 
-async function loadLabels(viewer: Viewer, url: string) {
+async function loadLabels(plantDataSource: CustomDataSource, url: string) {
   const config = await Resource.fetchJson({ url })
   const elements = config.elements[1].elements
 
@@ -765,7 +790,7 @@ async function loadLabels(viewer: Viewer, url: string) {
     }
     content = content.substring(0, content.length - 1)
 
-    viewer.entities.add({
+    plantDataSource.entities.add({
       position: Cartographic.toCartesian(position),
       label: {
         text: content,

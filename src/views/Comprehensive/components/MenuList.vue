@@ -25,6 +25,10 @@ const menuList = ref([
     title: '结束流程',
     color: 'rgba(255, 201, 51, 1)',
   },
+  {
+    title: '退出',
+    color: 'rgba(76, 190, 255, 1)',
+  },
 ])
 const emit = defineEmits(['clickStep'])
 const clickStep = (index: number) => {
@@ -49,7 +53,8 @@ const clickStep = (index: number) => {
   color: rgba(2, 218, 230, 1);
   background-size: cover;
 }
-.menu_item_1 {
+.menu_item_1,
+.menu_item_4 {
   background-image: url('@/views/Comprehensive/images/btn_flow2.png');
   color: rgba(76, 190, 255, 1);
   background-size: cover;

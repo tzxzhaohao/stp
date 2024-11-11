@@ -85,6 +85,8 @@ const clickStep = (index: number) => {
     foulWaterPlant.cancelBlurBackground()
     foulWaterPlant.cancelClassifyPipeByColor()
     foulWaterPlant.stopFlowDisplay()
+  } else if (index === 4) {
+    foulWaterPlant.unloadModels()
   }
 }
 </script>
