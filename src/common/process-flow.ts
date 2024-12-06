@@ -421,13 +421,16 @@ export class FoulWaterPlant {
     this.viewer.clock.currentTime = JulianDate.fromDate(d)
 
     // 加载化工园区倾斜模型图层
-    /*  const heightOffset = 40.0 // 倾斜模型抬升高度
-    const parkTileset = loadTileset(this.viewer, {
-      url: options.parkUrl,
-      heightOffset,
-      enableModelExperimental: true,
-    }) */
-    const parkTileset = window.tileset['倾斜摄影']
+    const heightOffset = 40.0 // 倾斜模型抬升高度
+
+    const parkTileset = window.__MICRO_APP_ENVIRONMENT__
+      ? window.tileset['倾斜摄影']
+      : loadTileset(this.viewer, {
+          url: options.parkUrl,
+          heightOffset,
+          enableModelExperimental: true,
+        })
+    /*  const parkTileset = window.tileset['倾斜摄影'] */
     // 倾斜模型压平
     flattenTileset(parkTileset, {
       southwest: Cartographic.fromDegrees(112.30423604132345, 31.417990474551704, 90.7865705479846),

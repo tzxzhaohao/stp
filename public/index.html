@@ -9,12 +9,15 @@
         <%= htmlWebpackPlugin.options.title %>
     </title>
     <link rel="stylesheet" type="text/css" href="<%= BASE_URL %>varCss.css?t=<%= htmlWebpackPlugin.options.buildHash %>" exclude>
+  
     <script src="<%= BASE_URL %>env.js?t=<%= htmlWebpackPlugin.options.buildHash %>"></script>
     <script src="<%= BASE_URL %>js/echarts_4.8.0.min.js" exclude></script>
     <script src="<%= BASE_URL %>js/highstock.js" exclude></script>
     <script src="<%= BASE_URL %>js/highcharts-more.js" exclude></script>
     <script src="<%= BASE_URL %>js/drilldown.js" exclude></script>
     <script src="<%= BASE_URL %>js/highcharts-3d.js" exclude></script>
+    <script src="<%= BASE_URL %>js/echarts-liquidfill@2.0.6.js" exclude></script>
+ 
     <script src="https://cesium.com/downloads/cesiumjs/releases/1.95/Build/Cesium/Cesium.js" exclude></script>
     <link href="https://cesium.com/downloads/cesiumjs/releases/1.95/Build/Cesium/Widgets/widgets.css" rel="stylesheet" exclude>
 </head>

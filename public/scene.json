@@ -1,0 +1,756 @@
+{
+    "asset": {
+        "version": "0.1",
+        "type": "scene"
+    },
+    "terrain": {
+        "name": "全国地形",
+        "provider": {
+            "type": "cesium",
+            "url": "http://39.105.60.121/mapdata/terrain"
+        }
+    },
+    "basemaps": [
+        {
+            "name": "天地图影像",
+            "type": "group",
+            "icon": "img/basemaps/tdt_img.png",
+            "layers": [
+                {
+                    "name": "影像注记",
+                    "annotation": true,
+                    "provider": {
+                        "type": "tdt",
+                        "layer": "cia"
+                    },
+                    "type": "imagery",
+                    "index": -1
+                },
+                {
+                    "name": "影像底图",
+                    "provider": {
+                        "type": "tdt",
+                        "layer": "img"
+                    },
+                    "type": "imagery",
+                    "index": -1
+                }
+            ]
+        },
+        {
+            "name": "天地图电子",
+            "type": "group",
+            "icon": "img/basemaps/tdt_vec.png",
+            "layers": [
+                {
+                    "name": "矢量注记",
+                    "annotation": true,
+                    "provider": {
+                        "type": "tdt",
+                        "layer": "cva"
+                    },
+                    "type": "imagery",
+                    "index": -1
+                },
+                {
+                    "name": "矢量底图",
+                    "provider": {
+                        "type": "tdt",
+                        "layer": "vec"
+                    },
+                    "type": "imagery",
+                    "index": -1
+                }
+            ]
+        },
+        {
+            "name": "高德影像",
+            "type": "group",
+            "icon": "img/basemaps/gaode_img.png",
+            "layers": [
+                {
+                    "name": "影像注记",
+                    "annotation": true,
+                    "provider": {
+                        "type": "gaode",
+                        "layer": "anno"
+                    },
+                    "type": "imagery",
+                    "index": -1
+                },
+                {
+                    "name": "影像底图",
+                    "provider": {
+                        "type": "gaode",
+                        "layer": "img"
+                    },
+                    "type": "imagery",
+                    "index": -1
+                }
+            ]
+        },
+        {
+            "name": "高德电子",
+            "icon": "img/basemaps/gaode_vec.png",
+            "type": "imagery",
+            "provider": {
+                "type": "gaode",
+                "layer": "vec"
+            },
+            "index": -1
+        },
+        {
+            "name": "百度影像",
+            "type": "group",
+            "icon": "img/basemaps/bd-img.png",
+            "layers": [
+                {
+                    "name": "影像注记",
+                    "annotation": true,
+                    "provider": {
+                        "type": "baidu",
+                        "layer": "anno"
+                    },
+                    "type": "imagery",
+                    "index": -1
+                },
+                {
+                    "name": "影像底图",
+                    "provider": {
+                        "type": "baidu",
+                        "layer": "img"
+                    },
+                    "type": "imagery",
+                    "index": -1
+                }
+            ]
+        },
+        {
+            "name": "百度电子",
+            "icon": "img/basemaps/bd-vec.png",
+            "type": "imagery",
+            "provider": {
+                "type": "baidu",
+                "layer": "vec"
+            },
+            "index": -1
+        },
+        {
+            "name": "腾讯影像",
+            "type": "group",
+            "icon": "img/basemaps/gaode_img.png",
+            "layers": [
+                {
+                    "name": "影像注记",
+                    "annotation": true,
+                    "provider": {
+                        "type": "tencent",
+                        "layer": "vec",
+                        "style": 2
+                    },
+                    "type": "imagery",
+                    "index": -1
+                },
+                {
+                    "name": "影像底图",
+                    "provider": {
+                        "type": "tencent",
+                        "layer": "img"
+                    },
+                    "type": "imagery",
+                    "index": -1
+                }
+            ]
+        },
+        {
+            "name": "腾讯电子",
+            "icon": "img/basemaps/gaode_vec.png",
+            "type": "imagery",
+            "provider": {
+                "type": "tencent",
+                "layer": "vec",
+                "style": 1
+            },
+            "index": -1
+        },
+        {
+            "name": "ArcGIS影像",
+            "icon": "img/basemaps/esriWorldImagery.png",
+            "type": "imagery",
+            "provider": {
+                "type": "xyz",
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+            },
+            "index": -1
+        },
+        {
+            "name": "微软影像",
+            "icon": "img/basemaps/bingAerial.png",
+            "type": "imagery",
+            "provider": {
+                "type": "bing",
+                "mapStyle": "Aerial"
+            },
+            "index": -1
+        },
+        {
+            "name": "OSM地图",
+            "icon": "img/basemaps/osm.png",
+            "type": "imagery",
+            "provider": {
+                "type": "xyz",
+                "url": "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                "subdomains": "abc"
+            },
+            "index": -1
+        },
+        {
+            "name": "蓝色底图",
+            "icon": "img/basemaps/bd-c-midnight.png",
+            "type": "imagery",
+            "provider": {
+                "type": "xyz",
+                "url": "http://map.geoq.cn/arcgis/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}"
+            },
+            "index": -1
+        },
+        {
+            "name": "黑色底图",
+            "icon": "img/basemaps/bd-c-dark.png",
+            "type": "imagery",
+            "provider": {
+                "type": "tencent",
+                "layer": "vec",
+                "style": "4"
+            },
+            "index": -1
+        },
+        {
+            "name": "离线地图",
+            "icon": "img/basemaps/google_img.png",
+            "type": "imagery",
+            "provider": {
+                "type": "xyz",
+                "url": "http://39.105.60.121/mapdata/maptile/wgs3857img/{z}/{x}/{y}.jpg",
+                "minimumLevel": 0,
+                "maximumLevel": 18
+            },
+            "index": 0,
+            "active": true
+        },
+        {
+            "name": "单张图片",
+            "icon": "img/basemaps/offline.png",
+            "type": "imagery",
+            "provider": {
+                "type": "img",
+                "url": "http://39.105.60.121/mapdata/dom/world.jpg"
+            },
+            "index": -1
+        }
+    ],
+    "layers": [
+        {
+            "name": "荆门",
+            "type": "tileset",
+            "url": "http://112.28.28.118:30008/3dtiles/jingmen/3dtile/tileset.json",
+            "heightOffset": 40,
+            "show": false
+        }
+    ],
+    "elements": [
+        {
+            "guid": "506e95be-7d61-43e0-ae1b-1feb4c08a0e3",
+            "name": "模型",
+            "elements": [
+                {
+                    "guid": "062c6296-c174-42a5-b2a1-096d8a5fff30",
+                    "name": "污水处理厂",
+                    "type": "model",
+                    "url": "http://localhost:8089/data/wsclc/gltf/WSCLC.gltf",
+                    "position": [
+                        112.26198376628405,
+                        31.3453507487339,
+                        34.4
+                    ],
+                    "heading": 90,
+                    "pitch": 0,
+                    "roll": 0,
+                    "scale": 1
+                }
+            ]
+        },
+        {
+            "guid": "83c34925-389d-4769-aad0-2e163cf6267e",
+            "name": "标注",
+            "elements": [
+                {
+                    "guid": "79d5923e-fd53-4528-8cfa-1f2e19f23e6e",
+                    "name": "预处理系统",
+                    "type": "label",
+                    "text": "预处理系统",
+                    "position": [
+                        112.30470411513862,
+                        31.41876759005189,
+                        90
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "ff3847bd-017d-44ab-b5a9-2993bf370b4c",
+                    "name": "调节事故池",
+                    "type": "label",
+                    "text": "调节事故池",
+                    "position": [
+                        112.30461967801041,
+                        31.41850997426872,
+                        95
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "07431751-5950-450e-9a5b-36a37e6e475e",
+                    "name": "一级絮凝池",
+                    "type": "label",
+                    "text": "一级絮凝池",
+                    "position": [
+                        112.3049556528137,
+                        31.41844813308517,
+                        95
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "2acbfd38-3096-476a-8009-b9ae1aa48d07",
+                    "name": "AO-AO生化池",
+                    "type": "label",
+                    "text": "AO-AO生化池",
+                    "position": [
+                        112.30520208127777,
+                        31.41837502302451,
+                        95
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "13803634-524e-46b1-8a98-54f93d2141d6",
+                    "name": "二沉池",
+                    "type": "label",
+                    "text": "二沉池",
+                    "position": [
+                        112.30548812953464,
+                        31.418302098013726,
+                        95
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "00581315-0fd0-4690-9c17-6fa81d44d39e",
+                    "name": "二级絮凝池",
+                    "type": "label",
+                    "text": "二级絮凝池",
+                    "position": [
+                        112.30570348913369,
+                        31.418244742860182,
+                        95
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "633e9cef-2ddb-44e9-95e6-09eeef54f19d",
+                    "name": "污泥泵站",
+                    "type": "label",
+                    "text": "污泥泵站",
+                    "position": [
+                        112.30549996907845,
+                        31.418162276578595,
+                        95
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "63fc357d-84f1-4605-b9fa-bc88d7063754",
+                    "name": "深度处理间",
+                    "type": "label",
+                    "text": "深度处理间",
+                    "position": [
+                        112.305749535627,
+                        31.418467633921072,
+                        95
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "8a2a4b01-f88d-48c4-8955-9dadab17ced6",
+                    "name": "加药间",
+                    "type": "label",
+                    "text": "加药间",
+                    "position": [
+                        112.30547044016748,
+                        31.418543573906614,
+                        105
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "8aadfc55-e018-404f-8dcb-022f43830cf2",
+                    "name": "污泥浓缩池",
+                    "type": "label",
+                    "text": "污泥浓缩池",
+                    "position": [
+                        112.30515746850803,
+                        31.41788867765218,
+                        95
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "1a47cf88-5382-4e70-ae7c-7ae1b17f3a55",
+                    "name": "污泥调理池",
+                    "type": "label",
+                    "text": "污泥调理池",
+                    "position": [
+                        112.305062267025,
+                        31.417805272005225,
+                        95
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "10727c18-7d99-49c2-94d1-9f5dee335635",
+                    "name": "污泥脱水间",
+                    "type": "label",
+                    "text": "污泥脱水间",
+                    "position": [
+                        112.30546161745072,
+                        31.417748696593424,
+                        100
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "3813e9cb-b950-4aa4-bdd0-24f33b714285",
+                    "name": "在线监测间",
+                    "type": "label",
+                    "text": "在线监测间",
+                    "position": [
+                        112.3046521318205,
+                        31.418816767851425,
+                        100
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "c3f80902-587d-4d22-b925-d169edfb660b",
+                    "name": "在线监测间",
+                    "type": "label",
+                    "text": "在线监测间",
+                    "position": [
+                        112.3056457333752,
+                        31.418507124288332,
+                        100
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "03a26ff3-9e84-43f4-ae3d-7976844572af",
+                    "name": "低压配电室",
+                    "type": "label",
+                    "text": "低压配电室",
+                    "position": [
+                        112.30511952822845,
+                        31.418644963927598,
+                        100
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                    "guid": "d7bd2dbe-e1fc-43e9-a386-edb9f0863753",
+                    "name": "鼓风机房",
+                    "type": "label",
+                    "text": "鼓风机房",
+                    "position": [
+                        112.30524536484832,
+                        31.418610576314617,
+                        100
+                    ],
+                    "horizontalOrigin": 0,
+                    "verticalOrigin": 1,
+                    "pixelOffset": [
+                        0,
+                        0
+                    ],
+                    "fontName": "sans-serif",
+                    "fontSize": 30,
+                    "style": 0,
+                    "fillColor": "rgb(0,0,255)",
+                    "outlineColor": "rgb(0,0,0)",
+                    "outlineWidth": 0,
+                    "showBackground": false,
+                    "backgroundColor": "rgba(42,42,42,0.8)"
+                },
+                {
+                  "guid": "5c71b7c1-0f93-4325-b617-d0d55c4fecaf",
+                  "name": "除氟设备",
+                  "type": "label",
+                  "text": "除氟设备",
+                  "position": [
+                      112.30584403865754,
+                      31.418449050445155,
+                      95
+                  ],
+                  "horizontalOrigin": 0,
+                  "verticalOrigin": 1,
+                  "pixelOffset": [
+                      0,
+                      0
+                  ],
+                  "fontName": "sans-serif",
+                  "fontSize": 30,
+                  "style": 0,
+                  "fillColor": "rgb(0,0,255)",
+                  "outlineColor": "rgb(0,0,0)",
+                  "outlineWidth": 0,
+                  "showBackground": false,
+                  "backgroundColor": "rgba(42,42,42,0.8)"
+              },
+              {
+                  "guid": "27df29c6-6000-4f48-9641-a30f76918317",
+                  "name": "除氟加药设备",
+                  "type": "label",
+                  "text": "除氟加药设备",
+                  "position": [
+                      112.30590507079626,
+                      31.418432357785374,
+                      92
+                  ],
+                  "horizontalOrigin": 0,
+                  "verticalOrigin": 1,
+                  "pixelOffset": [
+                      0,
+                      0
+                  ],
+                  "fontName": "sans-serif",
+                  "fontSize": 30,
+                  "style": 0,
+                  "fillColor": "rgb(0,0,255)",
+                  "outlineColor": "rgb(0,0,0)",
+                  "outlineWidth": 0,
+                  "showBackground": false,
+                  "backgroundColor": "rgba(42,42,42,0.8)"
+              }
+            ]
+        }
+    ],
+    "animations": [],
+    "home": {
+        "destination": {
+            "longitude": 112.30517803004791,
+            "latitude": 31.417955927397504,
+            "height": 358.8803551913667
+        },
+        "orientation": {
+            "heading": 16.865999522544882,
+            "pitch": -84.99717089976366,
+            "roll": 359.9987016837311
+        },
+        "duration": 5,
+        "flying": true,
+        "auto": true
+    }
+}

@@ -1,13 +1,20 @@
 <template>
-  <ul class="menu_list">
+  <ul class="menu_list" v-if="isProcessing">
     <li :class="['menu_item', 'menu_item_' + index]" :key="index" v-for="(item, index) in menuList" @click="clickStep(index)">
       <span>{{ item.title }}</span>
+    </li>
+  </ul>
+  <ul v-else class="menu_list">
+    <li class="menu_item menu_item_0" @click="startProcess">
+      <span>工艺流程图</span>
     </li>
   </ul>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-
+const props = defineProps<{
+  isProcessing: boolean
+}>()
 const menuList = ref([
   {
     title: '主流程',
@@ -30,9 +37,12 @@ const menuList = ref([
     color: 'rgba(76, 190, 255, 1)',
   },
 ])
-const emit = defineEmits(['clickStep'])
+const emit = defineEmits(['clickStep', 'startProcess'])
 const clickStep = (index: number) => {
   emit('clickStep', index)
+}
+const startProcess = () => {
+  emit('startProcess')
 }
 </script>
 <style scoped lang="scss">

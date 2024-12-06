@@ -9,8 +9,9 @@ import globalComponents from '@/plugins/components'
 import './styles/scrollbar.scss'
 import { useGlobalStore } from '@/stores/global'
 import { useAppStore } from '@/stores/app'
+import './styles/subtitle.css'
 
-console.log(allConfig)
+console.log(window.Cesium)
 
 // 与基座进行数据交互
 function handleMicroData() {
