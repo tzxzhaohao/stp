@@ -76,7 +76,7 @@ module.exports = defineConfig({
     port: 4001,
     proxy: {
       '/apis': {
-        target: 'http://ipes-dev.fpi-inc.site:30080',
+        target: 'http://122.191.102.250:32080',
         changeOrigin: true,
         pathRewrite: {
           '^/apis': '/',

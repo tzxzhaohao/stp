@@ -13,7 +13,7 @@
     <AlarmManager />
   </div>
   <div class="bottom-module" v-if="!isProcessing">
-    <BottomModule />
+    <VideoGallery />
   </div>
   <WarningDialog v-if="!isProcessing" :show="showWarningDialog" @close-dialog="showWarningDialog = false" @show-or-hide="showWarningDialog = !showWarningDialog" />
 
@@ -31,6 +31,7 @@ import EnergeyChart from '@/views/Comprehensive/energeyChart.vue'
 import AlarmManager from '@/views/Comprehensive/alarmManager.vue'
 import BottomModule from '@/views/Comprehensive/bottomModule.vue'
 import WarningDialog from '@/views/Comprehensive/warningDialog.vue'
+import VideoGallery from '@/views/Comprehensive/videoGallery.vue'
 /* const loadCesium3Dtileset = async (url: string) => {
   const { viewer, Cesium3DTileset, Cartographic, Cartesian3, Matrix4 } = window.Cesium
   const tileset = new Cesium3DTileset({
