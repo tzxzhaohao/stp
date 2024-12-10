@@ -129,16 +129,16 @@ const clickStep = (index: number) => {
     foulWaterPlant.classifyPipeByColor()
     foulWaterPlant.startDefluorinationFlowDisplay()
   } else if (index === 3) {
-    isProcessing.value = false
+    isProcessing.value = true
     foulWaterPlant.cancelBlurBackground()
     foulWaterPlant.cancelClassifyPipeByColor()
     foulWaterPlant.stopFlowDisplay()
   } else if (index === 4) {
-    isProcessing.value = false
     foulWaterPlant.cancelBlurBackground()
     foulWaterPlant.cancelClassifyPipeByColor()
     foulWaterPlant.stopFlowDisplay()
-    foulWaterPlant.unloadModels()
+    isProcessing.value = false
+    /*   foulWaterPlant.unloadModels() */
   }
 }
 </script>
