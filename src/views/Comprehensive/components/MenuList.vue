@@ -8,13 +8,18 @@
     <li class="menu_item menu_item_0" @click="startProcess">
       <span>工艺流程图</span>
     </li>
+    <li class="menu_item menu_item_1" @click="startArtWork">
+      <span>工艺运行模拟</span>
+    </li>
   </ul>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
+
 const props = defineProps<{
   isProcessing: boolean
 }>()
+
 const menuList = ref([
   {
     title: '主流程',
@@ -37,12 +42,15 @@ const menuList = ref([
     color: 'rgba(76, 190, 255, 1)',
   },
 ])
-const emit = defineEmits(['clickStep', 'startProcess'])
+const emit = defineEmits(['clickStep', 'startProcess', 'startArtWork'])
 const clickStep = (index: number) => {
   emit('clickStep', index)
 }
 const startProcess = () => {
   emit('startProcess')
+}
+const startArtWork = () => {
+  emit('startArtWork')
 }
 </script>
 <style scoped lang="scss">

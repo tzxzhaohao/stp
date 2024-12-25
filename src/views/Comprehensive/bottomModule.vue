@@ -1,5 +1,5 @@
 <template>
-  <BasePanel title="报警管理" :width="960" :height="254">
+  <BasePanel title="实时监控" :width="960" :height="254">
     <swiper
       :slidesPerView="3"
       :spaceBetween="30"

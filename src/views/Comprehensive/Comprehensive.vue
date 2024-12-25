@@ -17,10 +17,18 @@
   </div>
   <WarningDialog v-if="!isProcessing" :show="showWarningDialog" @close-dialog="showWarningDialog = false" @show-or-hide="showWarningDialog = !showWarningDialog" />
 
-  <MenuList :is-processing="isProcessing" :class="!isProcessing ? 'menu-module' : 'menu-module_process'" @click-step="clickStep" @start-process="isProcessing = true"></MenuList>
+  <MenuList
+    :is-processing="isProcessing"
+    :class="!isProcessing ? 'menu-module' : 'menu-module_process'"
+    @click-step="clickStep"
+    @start-process="isProcessing = true"
+    @start-art-work="showModel = true"
+  ></MenuList>
+  <ArtWorkModel v-if="showModel" @close-dialog="showModel = false" />
 </template>
 <script setup lang="ts">
 import { setBasePath } from '@/utils/tools'
+import ArtWorkModel from '@/views/Comprehensive/components/artWorkModel.vue'
 import WaterHanderChart from '@/views/Comprehensive/waterHanderChart.vue'
 import WaterLevelChart from '@/views/Comprehensive/waterLevelChart.vue'
 import FlowRateChart from '@/views/Comprehensive/flowRateChart.vue'
@@ -60,6 +68,7 @@ import { createViewer } from '@/common/use-viewer-app'
 const { UrlTemplateImageryProvider, CesiumTerrainProvider, Ion } = window.Cesium
 const showWarningDialog = ref(true)
 const isProcessing = ref(false)
+const showModel = ref(false)
 const isMicro = window.__MICRO_APP_ENVIRONMENT__
 let foulWaterPlant: FoulWaterPlant
 onMounted(async () => {
