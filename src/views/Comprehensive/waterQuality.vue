@@ -6,58 +6,55 @@
     </div>
     <div class="chart_list">
       <li class="chart_li" v-for="(item, index) in chartList" :key="index">
-        <span class="text">{{ item.text }}</span>
+        <span class="text">{{ item.type }}</span>
         <span class="number">
-          {{ item.currentValue }}<em class="unit">{{ item.unit }}</em>
+          {{ item.actualValue }}<em class="unit">{{ item.unit }}</em>
         </span>
         <div class="progress_chart">
-          <ProgressBar :percentage="60" status="success"></ProgressBar>
-          <ProgressBar style="margin-top: 10px" :percentage="70"></ProgressBar>
+          <ProgressBar :percentage="item.actualPercents * 100" status="success"></ProgressBar>
+          <ProgressBar style="margin-top: 10px" :percentage="item.standPercents * 100"></ProgressBar>
         </div>
       </li>
     </div>
   </BasePanel>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import BasePanel from '@/components/BasePanel/BasePanel.vue'
 import ProgressBar from '@/views/Comprehensive/components/Progress.vue'
-const percentage = ref(3)
+import request from '@/utils/request'
+
 /* setInterval(() => {
   percentage.value += Math.random() * 5
 }, 1000) */
-const chartList = ref([
-  {
-    text: 'PH值',
-    unit: '%',
-    currentValue: 7.7,
-    basicValue: 8.88,
-  },
-  {
-    text: 'COD',
-    unit: 'mg/L',
-    currentValue: 18.52,
-    basicValue: 8.88,
-  },
-  {
-    text: '总磷',
-    unit: 'mg/L',
-    currentValue: 0.05,
-    basicValue: 8.88,
-  },
-  {
-    text: '总氮',
-    unit: 'mg/L',
-    currentValue: 0.05,
-    basicValue: 8.88,
-  },
-  {
-    text: '氨氮',
-    unit: 'mg/L',
-    currentValue: 0.05,
-    basicValue: 8.88,
-  },
-])
+const chartList = ref([])
+let interval: any
+onMounted(() => {
+  getData()
+  interval = setInterval(() => {
+    getData()
+  }, 60 * 1000)
+})
+onUnmounted(() => {
+  if (interval) {
+    clearInterval(interval)
+  }
+})
+
+const getData = async () => {
+  const res: any = await request({
+    method: 'get',
+    url: '/ipes-data-aggregation-server/open/v1/zhongtu/output-real-data',
+  })
+  if (res.code === '200') {
+    res.data.forEach((item: any) => {
+      const total = item.standardValue + item.actualValue
+      item.standPercents = item.standardValue / total
+      item.actualPercents = item.actualValue / total
+    })
+    chartList.value = res.data
+  }
+}
 </script>
 <style lang="scss">
 .chart_title {

@@ -5,14 +5,9 @@
 </template>
 <script setup lang="ts">
 import BasePanel from '@/components/BasePanel/BasePanel.vue'
-import { reactive } from 'vue'
+import { reactive, onMounted, onUnmounted } from 'vue'
 import Echarts from '@/components/sencePanel/common/Echarts.vue'
-const handerData = reactive({
-  in: 120,
-  out: 85,
-  total: 136.24,
-  rate: 90,
-})
+import request from '@/utils/request'
 
 const options = reactive({
   grid: {
@@ -102,6 +97,30 @@ const options = reactive({
     },
   ],
 })
+let interval: any
+onMounted(() => {
+  getData()
+  interval = setInterval(() => {
+    getData()
+  }, 60 * 1000)
+})
+onUnmounted(() => {
+  if (interval) {
+    clearInterval(interval)
+  }
+})
+
+const getData = async () => {
+  const res: any = await request({
+    method: 'get',
+    url: '/ipes-data-aggregation-server/open/v1/zhongtu/flow-real-data',
+  })
+  if (res.code === '200') {
+    options.xAxis.data = res.data.map((item: any) => item.time)
+    options.series[0].data = res.data.map((item: any) => item.waterInflow)
+    options.series[1].data = res.data.map((item: any) => item.waterYield)
+  }
+}
 </script>
 <style lang="scss">
 .chart_box {

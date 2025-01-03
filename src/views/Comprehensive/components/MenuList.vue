@@ -11,6 +11,9 @@
     <li class="menu_item menu_item_1" @click="startArtWork">
       <span>工艺运行模拟</span>
     </li>
+    <li class="menu_item menu_item_2" @click="exitWork">
+      <span>退出</span>
+    </li>
   </ul>
 </template>
 <script setup lang="ts">
@@ -38,11 +41,11 @@ const menuList = ref([
     color: 'rgba(255, 201, 51, 1)',
   },
   {
-    title: '退出',
+    title: '返回',
     color: 'rgba(76, 190, 255, 1)',
   },
 ])
-const emit = defineEmits(['clickStep', 'startProcess', 'startArtWork'])
+const emit = defineEmits(['clickStep', 'startProcess', 'startArtWork', 'exitWork'])
 const clickStep = (index: number) => {
   emit('clickStep', index)
 }
@@ -51,6 +54,9 @@ const startProcess = () => {
 }
 const startArtWork = () => {
   emit('startArtWork')
+}
+const exitWork = () => {
+  emit('exitWork')
 }
 </script>
 <style scoped lang="scss">

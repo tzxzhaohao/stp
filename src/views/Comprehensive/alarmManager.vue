@@ -11,13 +11,13 @@
       </thead>
       <tbody class="table_body_alarm">
         <tr v-for="(item, index) in tableData" :key="index">
-          <td style="width: 28%">{{ item.date }}</td>
-          <td>{{ item.equirementName }}</td>
+          <td style="width: 28%">{{ item.alarmTime.replaceAll('-', '.') }}</td>
+          <td>{{ item.alarmFacility }}</td>
           <td>
-            <span :class="`level level_${item.level}`">{{ levelMap.get(item.level) }}</span>
+            <span :class="`level level_${item.alarmLevel}`">{{ levelMap.get(item.alarmLevel) }}</span>
           </td>
           <td>
-            <span :class="{ status_success: item.status === 1, status_error: item.status === 0 }">{{ item.status === 1 ? '已处理' : '未处理' }}</span>
+            <span :class="{ status_success: item.handleStutus === 1, status_error: item.handleStutus === 0 }">{{ item.handleStutus === 1 ? '已处理' : '未处理' }}</span>
           </td>
         </tr>
       </tbody>
@@ -26,55 +26,39 @@
 </template>
 <script setup lang="ts">
 import BasePanel from '@/components/BasePanel/BasePanel.vue'
-
-const tableData = [
-  {
-    date: '2024.12.06',
-    equirementName: '事故池',
-    level: 1,
-    status: 0,
-  },
-  {
-    date: '2024.12.06',
-    equirementName: '事故池',
-    level: 2,
-    status: 1,
-  },
-  {
-    date: '2024.12.06',
-    equirementName: '事故池',
-    level: 3,
-    status: 0,
-  },
-  {
-    date: '2024.12.06',
-    equirementName: '事故池',
-    level: 1,
-    status: 1,
-  },
-  {
-    date: '2024.12.06',
-    equirementName: '事故池',
-    level: 3,
-    status: 1,
-  },
-  {
-    date: '2024.12.06',
-    equirementName: '事故池',
-    level: 2,
-    status: 0,
-  },
-  {
-    date: '2024.12.06',
-    equirementName: '事故池',
-    level: 1,
-    status: 1,
-  },
-]
+import request from '@/utils/request'
+import { getFormattedDate } from '@/utils/tools'
+import { onMounted, onUnmounted, ref } from 'vue'
+const tableData = ref([])
 const levelMap = new Map()
 levelMap.set(1, '轻度')
 levelMap.set(2, '中度')
 levelMap.set(3, '重度')
+
+let interval: any
+onMounted(() => {
+  getData()
+  interval = setInterval(() => {
+    getData()
+  }, 60 * 1000)
+})
+onUnmounted(() => {
+  if (interval) {
+    clearInterval(interval)
+  }
+})
+
+const getData = async () => {
+  const startTime = getFormattedDate(new Date(Date.now() - 30 * 60 * 60 * 1000))
+  const endTime = getFormattedDate(new Date())
+  const res: any = await request({
+    method: 'get',
+    url: '/ipes-data-aggregation-server/open/v1/zhongtu/alarm-record?startTime=' + startTime + '&endTime=' + endTime,
+  })
+  if (res.code === '200') {
+    tableData.value = res.data
+  }
+}
 </script>
 <style lang="scss" scoped>
 .alarm_table {
@@ -120,7 +104,7 @@ levelMap.set(3, '重度')
     font-weight: 400;
     font-size: 11px;
     color: #95f1ff;
-    width: calc(100% - 6px);
+    width: calc(100%);
     background-color: rgba(27, 63, 85, 0.1);
   }
 

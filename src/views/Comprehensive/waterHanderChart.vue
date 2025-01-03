@@ -2,11 +2,11 @@
   <BasePanel title="环境质量" :width="320" :height="264">
     <ul class="menu_panel">
       <li class="water_bg">
-        <span class="number">{{ handerData.in }}<em class="unit">m³</em></span>
+        <span class="number">{{ handerData.waterInflow }}<em class="unit">m³</em></span>
         <span class="text">当日进水量</span>
       </li>
       <li class="water_bg">
-        <span class="number">{{ handerData.in }}<em class="unit">m³</em></span>
+        <span class="number">{{ handerData.waterYield }}<em class="unit">m³</em></span>
         <span class="text">当日出水量</span>
       </li>
     </ul>
@@ -16,20 +16,42 @@
       </div>
       <div class="total_text">
         <span class="text">累计处理水量</span>
-        <span class="number">{{ handerData.rate }}<em class="unit">m³</em></span>
+        <span class="number">{{ handerData.total }}<em class="unit">m³</em></span>
       </div>
     </div>
   </BasePanel>
 </template>
 <script setup lang="ts">
 import BasePanel from '@/components/BasePanel/BasePanel.vue'
-import { reactive } from 'vue'
-const handerData = reactive({
-  in: 120,
-  out: 85,
-  total: 136.24,
-  rate: 90,
+import request from '@/utils/request'
+import { reactive, onMounted, ref, onUnmounted } from 'vue'
+const handerData = ref({
+  waterInflow: 0,
+  waterYield: 0,
+  total: 0,
+  rate: 0,
 })
+
+let interval: any
+onMounted(() => {
+  getData()
+  interval = setInterval(() => {
+    getData()
+  }, 60 * 1000)
+})
+onUnmounted(() => {
+  if (interval) {
+    clearInterval(interval)
+  }
+})
+
+const getData = async () => {
+  const res: any = await request({
+    method: 'get',
+    url: '/ipes-data-aggregation-server/open/v1/zhongtu/water-processing-data',
+  })
+  handerData.value = res.data
+}
 </script>
 <style lang="scss">
 .menu_panel {

@@ -23,6 +23,7 @@
     @click-step="clickStep"
     @start-process="isProcessing = true"
     @start-art-work="showModel = true"
+    @exit-work="exitWork"
   ></MenuList>
   <ArtWorkModel v-if="showModel" @close-dialog="showModel = false" />
 </template>
@@ -149,6 +150,9 @@ const clickStep = (index: number) => {
     isProcessing.value = false
     /*   foulWaterPlant.unloadModels() */
   }
+}
+const exitWork = () => {
+  foulWaterPlant.unloadModels()
 }
 </script>
 <style lang="scss">

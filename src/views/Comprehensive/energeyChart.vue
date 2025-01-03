@@ -5,8 +5,9 @@
 </template>
 <script setup lang="ts">
 import BasePanel from '@/components/BasePanel/BasePanel.vue'
-import { reactive } from 'vue'
+import { reactive, onMounted, onUnmounted } from 'vue'
 import Echarts from '@/components/sencePanel/common/Echarts.vue'
+import request from '@/utils/request'
 
 const options = reactive({
   grid: {
@@ -24,32 +25,7 @@ const options = reactive({
 
   xAxis: {
     type: 'category',
-    data: [
-      '0:00',
-      '1:00',
-      '2:00',
-      '3:00',
-      '4:00',
-      '5:00',
-      '6:00',
-      '7:00',
-      '8:00',
-      '9:00',
-      '10:00',
-      '11:00',
-      '12:00',
-      '13:00',
-      '14:00',
-      '15:00',
-      '16:00',
-      '17:00',
-      '18:00',
-      '19:00',
-      '20:00',
-      '21:00',
-      '22:00',
-      '23:00',
-    ],
+    data: [],
     axisLabel: {
       //坐标轴上文字样式设置
       show: true, //显示x轴上的文字
@@ -95,7 +71,7 @@ const options = reactive({
   series: [
     {
       type: 'line',
-      data: [3, 4, 5, 7, 8, 9, 3, 4, 3, 4, 8, 2, 8, 3, 8, 1, 4, 5, 7, 8, 9, 3, 4, 3, 4],
+      data: [],
       smooth: true,
       showSymbol: false,
       areaStyle: {
@@ -113,6 +89,30 @@ const options = reactive({
     },
   ],
 })
+
+let interval: any
+onMounted(() => {
+  getData()
+  interval = setInterval(() => {
+    getData()
+  }, 60 * 1000)
+})
+onUnmounted(() => {
+  if (interval) {
+    clearInterval(interval)
+  }
+})
+
+const getData = async () => {
+  const res: any = await request({
+    method: 'get',
+    url: '/ipes-data-aggregation-server/open/v1/zhongtu/energy-trend',
+  })
+  if (res.code === '200') {
+    options.xAxis.data = res.data.map((item: any) => item.time)
+    options.series[0].data = res.data.map((item: any) => item.elecConsumption)
+  }
+}
 </script>
 <style lang="scss">
 .chart_box {

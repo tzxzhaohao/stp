@@ -1,45 +1,45 @@
 <template>
-  <Teleport to="body">
-    <div class="view_body">
-      <div class="view_content">
-        <div class="view_content_bg"></div>
-        <div class="view_header">
-          <div class="header_title">工艺运行模拟</div>
-          <div class="header_close" @click="closeDialog"></div>
-        </div>
-        <div class="view_message">
-          <div class="view_param">
-            <div class="parameter_header">
-              <img class="icon" src="@/assets/images/icon_parameter.png" alt="" srcset="" />
-              <span>工艺运行参数设置</span>
-            </div>
-            <div class="parmeter_content">
-              <div class="label">当日进水量（m³）：</div>
-              <div>
-                <input type="text" class="number_input" v-model="inputNumber" placeholder="请输入" />
-                <div class="btn_group">
-                  <div class="btn btn_start">开始模拟</div>
-                  <div class="btn btn_reset" @click="reset">重置</div>
-                </div>
+  <div class="view_body">
+    <div class="view_content">
+      <div class="view_content_bg"></div>
+      <div class="view_header">
+        <div class="header_title">工艺运行模拟</div>
+        <div class="header_close" @click="closeDialog"></div>
+      </div>
+      <div class="view_message">
+        <div class="view_param">
+          <div class="parameter_header">
+            <img class="icon" src="@/assets/images/icon_parameter.png" alt="" srcset="" />
+            <span>工艺运行参数设置</span>
+          </div>
+          <div class="parmeter_content">
+            <div class="label">当日进水量（m³）：</div>
+            <div>
+              <input type="text" class="number_input" v-model="inputNumber" placeholder="请输入" />
+              <div class="btn_group">
+                <div class="btn btn_start" @click="startArtWork">开始模拟</div>
+                <div class="btn btn_reset" @click="reset">重置</div>
               </div>
             </div>
           </div>
-          <div class="view_param">
-            <div class="parameter_header">
-              <img class="icon" src="@/assets/images/icon_result.png" alt="" srcset="" />
-              <span>运行模拟结果</span>
-            </div>
-            <div class="parmeter_content">
-              <div class="label">当日出水量（m³）：</div>
-              <div class="result_text">100</div>
-            </div>
+        </div>
+        <div class="view_param">
+          <div class="parameter_header">
+            <img class="icon" src="@/assets/images/icon_result.png" alt="" srcset="" />
+            <span>运行模拟结果</span>
+          </div>
+          <div class="parmeter_content">
+            <div class="label">当日出水量（m³）：</div>
+            <div class="result_text">{{ outputNumber }}</div>
           </div>
         </div>
       </div>
     </div>
-  </Teleport>
+  </div>
 </template>
 <script setup lang="ts">
+import request from '@/utils/request'
+import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
 const emits = defineEmits(['closeDialog', 'confirmDialog'])
 const closeDialog = () => {
@@ -49,17 +49,31 @@ const confirmDialog = () => {
   emits('confirmDialog')
 }
 const inputNumber = ref()
+const outputNumber = ref()
 const reset = () => {
   inputNumber.value = ''
+  outputNumber.value = ''
+}
+const startArtWork = async () => {
+  if (!inputNumber.value) {
+    ElMessage.warning('请输入当日进水量')
+  }
+  const res: any = await request({
+    method: 'get',
+    url: '/ipes-data-aggregation-server/open/v1/zhongtu/calculate-output?input=' + inputNumber.value,
+  })
+  if (res.code === '200') {
+    outputNumber.value = res.data.output
+  }
 }
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 .view_body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 1000;
   background-color: rgba(0, 0, 0, 0.6);
   .view_content {

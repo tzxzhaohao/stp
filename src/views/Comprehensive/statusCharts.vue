@@ -7,7 +7,7 @@
 </template>
 <script setup lang="ts">
 import Echarts from '@/components/sencePanel/common/Echarts.vue'
-import { reactive } from 'vue'
+import { reactive, watch } from 'vue'
 interface EquirementStatus {
   name: string
   total: number
@@ -55,7 +55,7 @@ const options = reactive({
       center: ['50%', '50%'], // 布局位置
       data: [
         {
-          value: props.equirementStatus.value / props.equirementStatus.total,
+          value: 0.3,
           direction: 'left',
           itemStyle: {
             normal: {
@@ -85,7 +85,7 @@ const options = reactive({
           },
         },
         {
-          value: props.equirementStatus.value / props.equirementStatus.total,
+          value: 0.3,
           direction: 'left',
           itemStyle: {
             normal: {
@@ -142,6 +142,19 @@ const options = reactive({
     },
   ],
 })
+watch(
+  () => props.equirementStatus,
+  equirementStatus => {
+    options.series[0].data[0].value = equirementStatus.value / equirementStatus.total
+    options.series[0].data[1].value = equirementStatus.value / equirementStatus.total
+    options.series[0].label.formatter = function () {
+      return `${equirementStatus.value}\n台`
+    }
+  },
+  {
+    deep: true,
+  },
+)
 </script>
 <style lang="scss">
 .equirement_box {

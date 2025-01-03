@@ -8,8 +8,9 @@
 <script setup lang="ts">
 import BasePanel from '@/components/BasePanel/BasePanel.vue'
 import StatusCharts from './statusCharts.vue'
-import { reactive } from 'vue'
-const equirementStatusList = [
+import { onMounted, onUnmounted, reactive, ref } from 'vue'
+import request from '@/utils/request'
+const equirementStatusList = ref([
   {
     name: '在线设备',
     index: 0,
@@ -28,7 +29,35 @@ const equirementStatusList = [
     total: 30,
     value: 5,
   },
-]
+])
+
+let interval: any
+onMounted(() => {
+  getData()
+  interval = setInterval(() => {
+    getData()
+  }, 60 * 1000)
+})
+onUnmounted(() => {
+  if (interval) {
+    clearInterval(interval)
+  }
+})
+
+const getData = async () => {
+  const res: any = await request({
+    method: 'get',
+    url: '/ipes-data-aggregation-server/open/v1/zhongtu/device-real-status',
+  })
+  if (res.code === '200') {
+    equirementStatusList.value[0].value = res.data.online
+    equirementStatusList.value[0].total = res.data.total
+    equirementStatusList.value[1].value = res.data.offline
+    equirementStatusList.value[1].total = res.data.total
+    equirementStatusList.value[2].value = res.data.broken
+    equirementStatusList.value[2].total = res.data.total
+  }
+}
 </script>
 <style lang="scss">
 .equirement_status {

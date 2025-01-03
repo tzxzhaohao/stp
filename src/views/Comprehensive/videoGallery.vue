@@ -1,5 +1,5 @@
 <template>
-  <BasePanel title="报警管理" :width="960" :height="254">
+  <BasePanel title="实时监控" :width="960" :height="254">
     <swiper
       :slidesPerView="3"
       :spaceBetween="30"
@@ -22,15 +22,16 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 
 import 'swiper/css/pagination'
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, onMounted } from 'vue'
 import VideoPlayer from './videoPlayer.vue'
 /* import './style.css' */
 
 // import required modules
 import { Pagination } from 'swiper/modules'
+import request from '@/utils/request'
 const modules = [Pagination]
 const videos = ref([
-  {
+  /*   {
     cameraCode: 'FPI-ISC_46e425214d894ea19a2eec5721179f17',
   },
   {
@@ -41,9 +42,20 @@ const videos = ref([
   },
   {
     cameraCode: 'FPI-ISC_b9e83807a19e4168810e180e8bea6f39',
-  },
+  }, */
 ])
-const isInView = ref([true, true, true, false, false, false, false, false])
+onMounted(async () => {
+  const res: any = await request({
+    method: 'get',
+    url: '/ipes-data-aggregation-server/open/v1/zhongtu/video',
+  })
+  videos.value = res.data.map((it: any) => {
+    return {
+      cameraCode: it.cameraIndexCode,
+    }
+  })
+  console.log(videos.value)
+})
 // 设置懒加载
 /* const setupLazyLoading = () => {
   const observer = new IntersectionObserver(entries => {
