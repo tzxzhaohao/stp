@@ -25,19 +25,15 @@ watch(
       },
       body: JSON.stringify(formData),
     }
-    /*  const data: any = await request({
+
+    const res: any = await request({
       method: 'post',
       url: '/bmp-video-control-server/api/v1/cameraInfo/getPreviewUrl',
       data: formData,
     })
-    console.log(data) */
-    fetch('/apis' + '/bmp-video-control-server/api/v1/cameraInfo/getPreviewUrl', options)
-      .then(data => data.json())
-      .then(res => {
-        if (res.code === 'success') {
-          playVideo(res.data)
-        }
-      })
+    if (res.code === 'success') {
+      playVideo(res.data)
+    }
   },
   {
     immediate: true,

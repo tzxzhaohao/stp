@@ -96,7 +96,7 @@ instance.interceptors.response.use(
   // 请求成功
   (response: AxiosResponse<any>) => {
     if (response.status === 200 && response.data) {
-      if (response.data.code && String(response.data.code) !== '200') {
+      if (response.data.code && String(response.data.code) !== '200' && String(response.data.code) !== 'success') {
         errorCodeHandler(String(response.data.code), response.data.message)
       } else {
         return response.data
