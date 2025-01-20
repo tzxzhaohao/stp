@@ -209,7 +209,7 @@ export class FoulWaterPlant {
   private mainFlowNodes: FlowNode[] // 主流程节点
   private deslimingFlowNodes: FlowNode[] // 污泥脱泥流程节点
   private defluorinationFlowNodes: FlowNode[] // 除氟流程节点
-
+  private utterance: SpeechSynthesisUtterance | undefined
   private simulating = false
 
   constructor(viewer: Viewer) {
@@ -410,6 +410,20 @@ export class FoulWaterPlant {
         subtitle: '除氟设备处理后进入后续处理单元',
       },
     ]
+
+    this.utterance = new SpeechSynthesisUtterance('')
+
+    // 设置语言为中文 (zh-CN)
+    this.utterance.lang = 'zh-CN'
+
+    // 设置语速（默认值为1，范围从0.1到10）
+    this.utterance.rate = 0.8
+
+    // 设置音调（默认值为1，范围从0到2）
+    this.utterance.pitch = 0.8
+
+    // 设置音量（默认值为1，范围从0到1）
+    this.utterance.volume = 1
   }
 
   async loadModels(options: any) {
@@ -704,6 +718,10 @@ export class FoulWaterPlant {
 
         // 显示字幕
         showSubtitle(flowNode.subtitle, typeSpeed)
+        if (this.utterance) {
+          this.utterance.text = flowNode.subtitle
+          window.speechSynthesis.speak(this.utterance)
+        }
         const duration = flowNode.subtitle.length * typeSpeed + 3000 // 展示时间, 单位毫秒
 
         await waitFor(STEP_INTERVAL + duration)
